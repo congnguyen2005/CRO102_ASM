@@ -5,6 +5,7 @@ import { persistReducer, persistStore } from 'redux-persist';
 import cartReducer from './cartSlice';
 import favoriteReducer from './favoriteSlice';
 import notificationReducer from './notificationSlice';
+import paymentReducer from './paymentSlice';
 
 // Cấu hình persist cho favorites
 const favoritesPersistConfig = {
@@ -24,15 +25,17 @@ const notificationsPersistConfig = {
 const persistedFavoriteReducer = persistReducer(favoritesPersistConfig, favoriteReducer);
 const persistedNotificationReducer = persistReducer(notificationsPersistConfig, notificationReducer);
 
-const store = configureStore({
+export const store = configureStore({
   reducer: {
     cart: cartReducer,
     favorites: persistedFavoriteReducer,
     notifications: persistedNotificationReducer,
+    payment: paymentReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: false // Tắt serializable check tạm thời để debug
+      serializableCheck: false,
+      immutableCheck: false,
     }),
 });
 

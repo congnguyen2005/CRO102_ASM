@@ -1,0 +1,30 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Cho phép đọc thông tin người dùng
+    match /users/{userId} {
+      allow read: if true;
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Cho phép đọc và viết bình luận cho người dùng đã xác thực
+    match /comments/{commentId} {
+      allow read: if true;
+      allow create: if request.auth != null && 
+        request.resource.data.userId == request.auth.uid &&
+        request.resource.data.userEmail == request.auth.token.email &&
+        request.resource.data.content is string &&
+        request.resource.data.content.size() > 0 &&
+        request.resource.data.content.size() <= 1000 &&
+        request.resource.data.productId is string;
+      allow update, delete: if request.auth != null && 
+        resource.data.userId == request.auth.uid;
+    }
+
+    // Mặc định từ chối tất cả các truy cập khác
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+} 

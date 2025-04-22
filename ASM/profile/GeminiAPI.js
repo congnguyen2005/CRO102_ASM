@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, ActivityIndicator, StyleSheet } from "react-native";
-import { API_KEY, TRANSLATE_API_KEY } from "../config/cofig"; // Đảm bảo có API Key cho Google Translate
+import { API_KEY, TRANSLATE_API_KEY } from "../config/cofig"; 
 
 const GeminiAPI = () => {
   const [inputText, setInputText] = useState("");
@@ -13,7 +13,6 @@ const GeminiAPI = () => {
       setResponseText("Vui lòng nhập câu hỏi trước!");
       return;
     }
-
     setLoading(true);
     setResponseText("");
     setTranslatedText("");

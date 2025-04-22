@@ -4,7 +4,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
 
-import AddProductScreen from "../screens/AddProductScreen";
 import CartScreen from "../screens/CartScreen";
 import HomeScreen from "../screens/HomeScreen";
 import LoginScreen from "../screens/Loginscreen";
@@ -22,6 +21,8 @@ import QAScreen from "../profile/QAScreen";
 import TermsConditionsScreen from "../profile/TermsConditionsScreen";
 import PrivacyPolicyScreen from "../profile/PrivacyPolicyScreen";
 import GeminiAPI from "../profile/GeminiAPI";
+import FogotPassWord from "../screens/FogotPassWord";
+
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -32,7 +33,6 @@ const HomeStackNavigator = () => (
     <Stack.Screen name="ProductDetail" component={ProductDetailScreen} />
     <Stack.Screen name="Cart" component={CartScreen} />
     <Stack.Screen name="Payment" component={PaymentScreen} />
-    <Stack.Screen name="AddProduct" component={AddProductScreen} />
     <Stack.Screen name="History" component={HistoryScreen} />
   </Stack.Navigator>
 );
@@ -98,6 +98,7 @@ const AppNavigator = () => {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
+        <Stack.Screen name="ForgotPassword" component={FogotPassWord} />
         <Stack.Screen name="Main" component={BottomTabNavigator} />
       </Stack.Navigator>
     </NavigationContainer>
